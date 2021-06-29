@@ -6,7 +6,7 @@ import time
 
 class Collector():
     def __init__(self) -> None:
-        self.max_frames = 100
+        self.max_frames = 100000
         self.object_listener = ObjectListener()
         from prime import PrimeSense
         import cv2
@@ -31,9 +31,10 @@ class Collector():
         done = False
         count = 0
         self.primesense.start_stream()
-        with open('data.csv', 'w', newline='') as file:
+        time.sleep(3)
+        with open(os.path.join(self.dir, 'data.csv'), 'w', newline='') as file:
             writer = csv.writer(file)
-            while not done and count<self.max_frames:
+            while not done and count < self.max_frames:
                 key = self.cv2.waitKey(1) & 255
                 # get frame
                 frame = self.primesense.get_rgb()
@@ -52,8 +53,8 @@ class Collector():
                 if key == 27: 
                     print("\tESC key detected!")
                     done = True
-                
-                time.sleep(0.1)
+
+                time.sleep(0.5)
 
         self.primesense.close()
         ## Release resources 
