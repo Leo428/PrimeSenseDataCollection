@@ -9,7 +9,7 @@ from primesense import _openni2 as c_api
 class PrimeSense():
     def __init__(self) -> None:
         openni2.initialize("/home/abhigupta/Downloads/OpenNI-Linux-x64-2.2/Redist")     # can also accept the path of the OpenNI redistribution
-
+        # openni2.initialize('/home/abhigupta/dev/random/libfreenect2/build/lib/') #libfreenect2-openni2.so
         ## Register the device
         self.dev = openni2.Device.open_any()
         ## Create the streams stream
@@ -36,3 +36,4 @@ class PrimeSense():
         self.rgb_stream.stop()
         openni2.unload()
 
+p = PrimeSense()

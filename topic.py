@@ -59,7 +59,7 @@ class ObjectListener:
         )
         rospy.init_node('listener', anonymous=True)
         rospy.Subscriber("get_object_pose", Pose, self.update_qpos)
-        rospy.sleep(1)
+        # rospy.sleep(1) #could be causing bug for object xyz tracking
 
     def update_qpos(self, pose):
         # notice to change both xyz and quat
